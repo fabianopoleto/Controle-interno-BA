@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controle Interno - Ocorrências</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="max-w-7xl mx-auto py-8 px-4">
+    <h1 class="text-2xl font-bold mb-6 text-center">📋 Controle Interno de Ocorrências</h1>
+
+    <div class="bg-white p-4 rounded-xl shadow mb-6">
+      <h2 class="text-lg font-semibold mb-2">Filtros de busca</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <input id="status" placeholder="Status" class="border rounded p-2 w-full" />
+        <input id="cliente" placeholder="Cliente" class="border rounded p-2 w-full" />
+        <input id="operadora" placeholder="Operadora" class="border rounded p-2 w-full" />
+        <input id="baGt" placeholder="BA GT" class="border rounded p-2 w-full" />
+        <div>
+          <label class="text-sm">Data Abertura Início</label>
+          <input id="dataAberturaInicio" type="date" class="border rounded p-2 w-full" />
+        </div>
+        <div>
+          <label class="text-sm">Data Abertura Fim</label>
+          <input id="dataAberturaFim" type="date" class="border rounded p-2 w-full" />
+        </div>
+      </div>
+      <div class="flex justify-between mt-4">
+        <div>
+          <button id="buscarBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Buscar</button>
+          <button id="limparBtn" class="ml-2 bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500">Limpar</button>
+          <button id="exportBtn" class="ml-2 bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Exportar CSV</button>
+        </div>
+        <div>
+          <button id="showDashboard" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Ver Dashboard</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white p-4 rounded-xl shadow overflow-auto">
+      <table class="min-w-full border-collapse border text-sm" id="tabelaIncidentes">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="border p-2">BA GT</th>
+            <th class="border p-2">Data Abertura</th>
+            <th class="border p-2">DDD Origem</th>
+            <th class="border p-2">Origem</th>
+            <th class="border p-2">DDD Destino</th>
+            <th class="border p-2">Destino</th>
+            <th class="border p-2">Descrição</th>
+            <th class="border p-2">Operadora</th>
+            <th class="border p-2">BA Operadora</th>
+            <th class="border p-2">Status</th>
+            <th class="border p-2">Data Encerramento</th>
+            <th class="border p-2">Cliente</th>
+            <th class="border p-2">Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="bg-white p-4 rounded-xl shadow mt-8">
+      <h2 class="text-lg font-semibold mb-2">Cadastrar nova ocorrência</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <input id="newBaGt" placeholder="BA GT" class="border p-2 rounded" />
+        <input id="newCliente" placeholder="Cliente" class="border p-2 rounded" />
+        <input id="newOperadora" placeholder="Operadora" class="border p-2 rounded" />
+        <input id="newDddOrigem" placeholder="DDD Origem" class="border p-2 rounded" />
+        <input id="newOrigem" placeholder="Origem" class="border p-2 rounded" />
+        <input id="newDddDestino" placeholder="DDD Destino" class="border p-2 rounded" />
+        <input id="newDestino" placeholder="Destino" class="border p-2 rounded" />
+        <input id="newStatus" placeholder="Status" class="border p-2 rounded" />
+        <input id="newBaOperadora" placeholder="BA Operadora" class="border p-2 rounded" />
+        <textarea id="newDescricao" placeholder="Descrição da falha" class="border p-2 rounded col-span-2 md:col-span-3"></textarea>
+      </div>
+      <div class="flex justify-end mt-4">
+        <button id="addBtn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Adicionar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Dashboard -->
+  <div id="dashboardModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
+    <div class="bg-white rounded p-6 w-11/12 max-w-4xl">
+      <h3 class="text-lg font-semibold mb-4">Dashboard</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <canvas id="chartStatus"></canvas>
+        <canvas id="chartOperadora"></canvas>
+      </div>
+      <div class="flex justify-end mt-4">
+        <button id="closeDashboard" class="bg-gray-400 text-white px-4 py-2 rounded">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
