@@ -2,9 +2,9 @@ services:
   - type: web
     name: controle-interno
     runtime: docker
+    plan: free
     repo: https://github.com/fabianopoleto/Controle-interno-BA
     branch: main
-    plan: free
     envVars:
       - key: PORT
         value: 8080
