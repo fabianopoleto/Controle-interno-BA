@@ -1,10 +1,10 @@
 services:
   - type: web
     name: controle-interno
-    env: java
-    buildCommand: ./mvnw clean package -DskipTests
-    startCommand: java -jar target/*.jar
+    runtime: docker
+    repo: https://github.com/fabianopoleto/Controle-interno-BA
+    branch: main
     plan: free
     envVars:
-      - key: JAVA_VERSION
-        value: 17
+      - key: PORT
+        value: 8080
